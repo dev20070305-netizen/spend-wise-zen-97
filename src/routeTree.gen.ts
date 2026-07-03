@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppTransactionsRouteImport } from './routes/_app.transactions'
 import { Route as AppSummaryRouteImport } from './routes/_app.summary'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
 import { Route as AppReportsRouteImport } from './routes/_app.reports'
 import { Route as AppIncomeRouteImport } from './routes/_app.income'
 import { Route as AppExportRouteImport } from './routes/_app.export'
@@ -43,6 +44,11 @@ const AppTransactionsRoute = AppTransactionsRouteImport.update({
 const AppSummaryRoute = AppSummaryRouteImport.update({
   id: '/summary',
   path: '/summary',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppReportsRoute = AppReportsRouteImport.update({
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/export': typeof AppExportRoute
   '/income': typeof AppIncomeRoute
   '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
   '/summary': typeof AppSummaryRoute
   '/transactions': typeof AppTransactionsRoute
 }
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/export': typeof AppExportRoute
   '/income': typeof AppIncomeRoute
   '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
   '/summary': typeof AppSummaryRoute
   '/transactions': typeof AppTransactionsRoute
 }
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/_app/export': typeof AppExportRoute
   '/_app/income': typeof AppIncomeRoute
   '/_app/reports': typeof AppReportsRoute
+  '/_app/settings': typeof AppSettingsRoute
   '/_app/summary': typeof AppSummaryRoute
   '/_app/transactions': typeof AppTransactionsRoute
 }
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/export'
     | '/income'
     | '/reports'
+    | '/settings'
     | '/summary'
     | '/transactions'
   fileRoutesByTo: FileRoutesByTo
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/export'
     | '/income'
     | '/reports'
+    | '/settings'
     | '/summary'
     | '/transactions'
   id:
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/_app/export'
     | '/_app/income'
     | '/_app/reports'
+    | '/_app/settings'
     | '/_app/summary'
     | '/_app/transactions'
   fileRoutesById: FileRoutesById
@@ -195,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/summary'
       fullPath: '/summary'
       preLoaderRoute: typeof AppSummaryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/reports': {
@@ -249,6 +268,7 @@ interface AppRouteChildren {
   AppExportRoute: typeof AppExportRoute
   AppIncomeRoute: typeof AppIncomeRoute
   AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppSummaryRoute: typeof AppSummaryRoute
   AppTransactionsRoute: typeof AppTransactionsRoute
 }
@@ -260,6 +280,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppExportRoute: AppExportRoute,
   AppIncomeRoute: AppIncomeRoute,
   AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppSummaryRoute: AppSummaryRoute,
   AppTransactionsRoute: AppTransactionsRoute,
 }
