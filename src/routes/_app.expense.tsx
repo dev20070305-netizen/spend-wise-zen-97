@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_app/expense")({
 });
 
 function AddExpensePage() {
-  const { addTransaction } = useFinance();
+  const { addTransaction, currencyInfo } = useFinance();
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
   const [merchant, setMerchant] = useState("");
@@ -57,8 +57,8 @@ function AddExpensePage() {
           <div className="space-y-2 sm:col-span-2">
             <Label>Amount</Label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
-              <Input required inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" className="pl-7 h-12 text-lg font-semibold" />
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">{currencyInfo.symbol}</span>
+              <Input required inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" className="pl-9 h-12 text-lg font-semibold" />
             </div>
           </div>
           <div className="space-y-2">

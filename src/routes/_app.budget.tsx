@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_app/budget")({
 });
 
 function BudgetPage() {
-  const { budget, setBudget, resetBudget } = useFinance();
+  const { budget, setBudget, resetBudget, currencyInfo } = useFinance();
   const t = useTotals();
   const [value, setValue] = useState(String(budget || ""));
 
@@ -51,8 +51,8 @@ function BudgetPage() {
             <div className="flex-1">
               <Label className="sr-only">Amount</Label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
-                <Input inputMode="decimal" value={value} onChange={(e) => setValue(e.target.value)} placeholder="0.00" className="pl-7 h-12 text-lg font-semibold" />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">{currencyInfo.symbol}</span>
+                <Input inputMode="decimal" value={value} onChange={(e) => setValue(e.target.value)} placeholder="0.00" className="pl-9 h-12 text-lg font-semibold" />
               </div>
             </div>
             <Button type="submit" className="h-12 gradient-primary text-white shadow-glow"><Save className="mr-2 h-4 w-4" />Save</Button>
