@@ -66,6 +66,34 @@ function SettingsPage() {
           <Switch checked={theme === "dark"} onCheckedChange={(v) => setTheme(v ? "dark" : "light")} />
         </div>
       </Card>
+
+      <Card className="p-6 shadow-card">
+        <h3 className="font-display font-semibold mb-4">Currency</h3>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="font-medium">Preferred currency</div>
+            <div className="text-sm text-muted-foreground">
+              Applied across balance, transactions, budgets, charts and PDF export.
+            </div>
+          </div>
+          <div className="w-full sm:w-72">
+            <Select value={currency} onValueChange={(v) => setCurrency(v as CurrencyCode)}>
+              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectContent className="max-h-80">
+                {CURRENCIES.map((c) => (
+                  <SelectItem key={c.code} value={c.code}>
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-8 text-muted-foreground">{c.symbol}</span>
+                      <span className="font-medium">{c.code}</span>
+                      <span className="text-muted-foreground">— {c.name}</span>
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }
