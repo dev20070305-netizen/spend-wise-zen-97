@@ -22,6 +22,7 @@ import {
   Plus,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { InstallPrompt } from "@/components/install-prompt";
 import { useFinance } from "@/lib/finance-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -90,6 +91,7 @@ function AppLayout() {
           <Outlet />
         </main>
       </div>
+      <InstallPrompt />
     </div>
   );
 }
