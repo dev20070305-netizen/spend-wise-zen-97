@@ -91,6 +91,7 @@ function AppLayout() {
           <Outlet />
         </main>
       </div>
+      <InstallPrompt />
     </div>
   );
 }
