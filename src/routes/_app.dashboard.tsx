@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import {
-  TrendingUp, TrendingDown, Wallet, PiggyBank, Target, ArrowUpRight, ArrowDownRight, PlusCircle, MinusCircle,
+  TrendingUp, TrendingDown, Wallet, PiggyBank, Target, ArrowUpRight, ArrowDownRight, PlusCircle, MinusCircle, LineChart as LineChartIcon,
 } from "lucide-react";
 import { useFinance, useTotals, formatCurrency } from "@/lib/finance-store";
 import { useAnimatedNumber } from "@/hooks/use-animated-number";
