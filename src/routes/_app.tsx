@@ -60,6 +60,8 @@ const NAV = [
 
 function AppLayout() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useEffect(() => { trackPageview(pathname); }, [pathname]);
   return (
     <div className="min-h-screen bg-background">
       {/* Sidebar (desktop fixed) */}
