@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import {
-  TrendingUp, TrendingDown, Wallet, PiggyBank, Target, ArrowUpRight, ArrowDownRight, PlusCircle, MinusCircle,
+  TrendingUp, TrendingDown, Wallet, PiggyBank, Target, ArrowUpRight, ArrowDownRight, PlusCircle, MinusCircle, LineChart as LineChartIcon,
 } from "lucide-react";
 import { useFinance, useTotals, formatCurrency } from "@/lib/finance-store";
 import { useAnimatedNumber } from "@/hooks/use-animated-number";
@@ -60,7 +60,10 @@ function DashboardPage() {
           <h1 className="font-display text-3xl font-bold">Hi, {profile.name.split(" ")[0]} 👋</h1>
           <p className="text-muted-foreground mt-1">Here's what's happening with your money this month.</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline">
+            <Link to="/analytics"><LineChartIcon className="mr-2 h-4 w-4" />Viewer Analytics</Link>
+          </Button>
           <Button asChild variant="outline">
             <Link to="/income"><PlusCircle className="mr-2 h-4 w-4" />Add income</Link>
           </Button>

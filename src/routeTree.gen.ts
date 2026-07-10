@@ -21,6 +21,7 @@ import { Route as AppExportRouteImport } from './routes/_app.export'
 import { Route as AppExpenseRouteImport } from './routes/_app.expense'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppBudgetRouteImport } from './routes/_app.budget'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -81,10 +82,16 @@ const AppBudgetRoute = AppBudgetRouteImport.update({
   path: '/budget',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/signup': typeof SignupRoute
+  '/analytics': typeof AppAnalyticsRoute
   '/budget': typeof AppBudgetRoute
   '/dashboard': typeof AppDashboardRoute
   '/expense': typeof AppExpenseRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signup': typeof SignupRoute
+  '/analytics': typeof AppAnalyticsRoute
   '/budget': typeof AppBudgetRoute
   '/dashboard': typeof AppDashboardRoute
   '/expense': typeof AppExpenseRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/signup': typeof SignupRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
   '/_app/budget': typeof AppBudgetRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/expense': typeof AppExpenseRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/signup'
+    | '/analytics'
     | '/budget'
     | '/dashboard'
     | '/expense'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/signup'
+    | '/analytics'
     | '/budget'
     | '/dashboard'
     | '/expense'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_app'
     | '/signup'
+    | '/_app/analytics'
     | '/_app/budget'
     | '/_app/dashboard'
     | '/_app/expense'
@@ -258,10 +270,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBudgetRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppBudgetRoute: typeof AppBudgetRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppExpenseRoute: typeof AppExpenseRoute
@@ -274,6 +294,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
   AppBudgetRoute: AppBudgetRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppExpenseRoute: AppExpenseRoute,

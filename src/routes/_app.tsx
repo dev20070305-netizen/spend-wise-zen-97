@@ -1,5 +1,6 @@
 import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { trackPageview } from "@/lib/analytics-store";
 import {
   LayoutDashboard,
   PlusCircle,
@@ -8,6 +9,7 @@ import {
   CalendarRange,
   Wallet,
   BarChart3,
+  LineChart,
   FileDown,
   Settings,
   Bell,
@@ -51,12 +53,15 @@ const NAV = [
   { to: "/summary", label: "Monthly Summary", icon: CalendarRange },
   { to: "/budget", label: "Budget", icon: Wallet },
   { to: "/reports", label: "Reports", icon: BarChart3 },
+  { to: "/analytics", label: "Viewer Analytics", icon: LineChart },
   { to: "/export", label: "Export PDF", icon: FileDown },
   { to: "/settings", label: "Settings", icon: Settings },
 ] as const;
 
 function AppLayout() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useEffect(() => { trackPageview(pathname); }, [pathname]);
   return (
     <div className="min-h-screen bg-background">
       {/* Sidebar (desktop fixed) */}
