@@ -1,5 +1,6 @@
 import { Link, Outlet, createFileRoute, useNavigate, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { trackPageview } from "@/lib/analytics-store";
 import {
   LayoutDashboard,
   PlusCircle,
