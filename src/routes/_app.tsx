@@ -53,6 +53,7 @@ const NAV = [
   { to: "/summary", label: "Monthly Summary", icon: CalendarRange },
   { to: "/budget", label: "Budget", icon: Wallet },
   { to: "/reports", label: "Reports", icon: BarChart3 },
+  { to: "/analytics", label: "Viewer Analytics", icon: LineChart },
   { to: "/export", label: "Export PDF", icon: FileDown },
   { to: "/settings", label: "Settings", icon: Settings },
 ] as const;
