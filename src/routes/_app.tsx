@@ -9,6 +9,7 @@ import {
   CalendarRange,
   Wallet,
   BarChart3,
+  LineChart,
   FileDown,
   Settings,
   Bell,
